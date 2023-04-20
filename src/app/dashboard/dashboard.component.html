@@ -1,0 +1,60 @@
+
+<mat-drawer-container class="example-container" autosize>
+  <!-- sidebar -->
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <img width="50" height="50" src="../../assets/img/avatar.png"><br>
+    <p>{{ authUser?.email }}</p><br>
+    <button mat-button routerLink="">Dashboard</button><br>
+    <button mat-button routerLink="">Usuarios</button><br>
+    
+    <button
+        mat-icon-button
+        class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon"
+      >
+        <mat-icon>Log out</mat-icon>
+      </button>
+  </mat-drawer>
+  <!-- wrapper -->
+  <div class="example-sidenav-content">
+    <!-- toolbar -->
+    <mat-toolbar color="Basic">
+      <button
+        type="button"
+        mat-button
+        (click)="drawer.toggle()"
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span [appFontSize]="20">Admin system</span>
+      <span class="example-spacer"></span>
+      <button
+        mat-icon-button
+        class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon"
+      >
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with share icon"
+      >
+        <mat-icon>share</mat-icon>
+      </button>
+      <div class="user-icon">
+        <img width="30" height="30" src="../../assets/img/avatar.png">
+        <p class="user-name">{{ (authUserObs$ | async)?.name }}</p>
+      </div>
+    </mat-toolbar>
+    <!-- mis paginas -->
+    <main>
+      <!-- <app-formularios></app-formularios> -->
+      <!-- <app-dialogues></app-dialogues> -->
+       <app-tables></app-tables> 
+      <app-observables></app-observables>
+    </main>
+  </div>
+</mat-drawer-container>

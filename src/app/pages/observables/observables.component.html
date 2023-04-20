@@ -1,0 +1,19 @@
+<p>observables works!</p>
+
+<div class="mb-3">
+
+</div>
+
+<form [formGroup]="authForm" (ngSubmit)="login()">
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input [formControl]="emailControl" placeholder="email" matInput />
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input [formControl]="nameControl" placeholder="name" matInput />
+    </mat-form-field>
+    <br>
+    <button mat-flat-button type="submit">LOG IN</button>
+</form>

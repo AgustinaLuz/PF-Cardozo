@@ -1,0 +1,51 @@
+
+
+<div class="mb-3">
+    <button (click)="abrirABMAlumnos()" color="primary" mat-flat-button>
+      <mat-icon>add</mat-icon>
+      Agregar Alumno
+    </button>
+  </div>
+<mat-form-field class="form-field-class">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilters($event)" placeholder="Ex. ium" #input>
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    <!-- Id Column -->
+<ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+    <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+  </ng-container>
+
+  <!-- full name column -->
+  <ng-container matColumnDef="full_name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </th>
+    <td mat-cell *matCellDef="let user"> {{user | fullName: 'lowercase'}} </td>
+  </ng-container>
+
+  <!-- birth date Column -->
+  <ng-container matColumnDef="birth_date">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Birth Date </th>
+    <td mat-cell *matCellDef="let user"> {{user.birth_date | date: 'dd/MM/YYYY'}} </td>
+  </ng-container>
+
+
+        <!-- Acciones -->
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let user; let i = index" style="text-align: right;">
+        <a class="pointer" style="color: #1878b0" matTooltip="Edit User" (click)="modificarUsuario(i)">
+            <mat-icon>edit</mat-icon>
+        </a>
+        <a class="pointer" (click)="eliminarUsuario(i)" style="color: #e15639" matTooltip="Delete User">
+            <mat-icon>delete</mat-icon>
+        </a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
