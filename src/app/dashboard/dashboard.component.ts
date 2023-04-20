@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { AuthService } from '../core/services/auth.service';
 import { Usuario } from '../core/models';
-import { Observable, Subject, Subscription, takeUntil } from 'rxjs';
+import { Observable, Subject, Subscription, map, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,7 +29,8 @@ export class DashboardComponent implements OnDestroy{
 
     this.authService.obtenerUsuarioAutenticado()
       .pipe(
-        takeUntil(this.destroyed$)
+        takeUntil(this.destroyed$),
+        map(usuario => ({...usuario, name: usuario.name.toUpperCase()}))
       )
       .subscribe((usuario) => this.authUser = usuario);
 }
