@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Estudiante } from '../tables.component';
+import { Alumno } from '../tables.component';
 import { NotificationsService } from 'src/app/core/services/notifications.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class AbmAlumnosComponent implements OnInit {
   });
 
 
-  constructor(private dialogRef: MatDialogRef<AbmAlumnosComponent>, @Inject(MAT_DIALOG_DATA) public data: Estudiante, private notificationService: NotificationsService) {}
+  constructor(private dialogRef: MatDialogRef<AbmAlumnosComponent>, @Inject(MAT_DIALOG_DATA) public data: Alumno, private notificationService: NotificationsService) {}
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }

@@ -1,19 +1,24 @@
 
 <mat-drawer-container class="example-container" autosize>
   <!-- sidebar -->
-  <mat-drawer #drawer class="example-sidenav" mode="side">
+  <mat-drawer [opened]="true" #drawer class="example-sidenav" mode="side">
     <img width="50" height="50" src="../../assets/img/avatar.png"><br>
     <p>{{ authUser?.email }}</p><br>
     <button mat-button routerLink="">Dashboard</button><br>
     <button mat-button routerLink="">Usuarios</button><br>
-    
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="link.path" *ngFor="let link of links">
+        <mat-icon *ngIf="link.icon">{{ link.icon }}</mat-icon>{{ link.title }}
+      </a>
+    </mat-nav-list>
     <button
+    (click)="logout()"
         mat-icon-button
         class="example-icon favorite-icon"
         aria-label="Example icon-button with heart icon"
       >
         <mat-icon>Log out</mat-icon>
-      </button>
+      </button>  
   </mat-drawer>
   <!-- wrapper -->
   <div class="example-sidenav-content">
@@ -53,8 +58,9 @@
     <main>
       <!-- <app-formularios></app-formularios> -->
       <!-- <app-dialogues></app-dialogues> -->
-       <app-tables></app-tables> 
-      <app-observables></app-observables>
+       <!-- <app-tables></app-tables> 
+      <app-observables></app-observables> -->
+      <router-outlet></router-outlet>
     </main>
   </div>
 </mat-drawer-container>

@@ -18,11 +18,13 @@ import { CheckboxModule } from 'primeng/checkbox';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSortModule} from '@angular/material/sort';
 import { ObservablesModule } from '../observables/observables.module';
+import { AlumnoDetalleComponent } from './pages/alumno-detalle/alumno-detalle.component';
 
 @NgModule({
   declarations: [
     TablesComponent,
-    AbmAlumnosComponent
+    AbmAlumnosComponent,
+    AlumnoDetalleComponent
   ],
   imports: [
     CommonModule,

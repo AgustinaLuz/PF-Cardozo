@@ -3,8 +3,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlumnosService } from './services/alumnos.service';
 
-export interface Estudiante {
+export interface Alumno {
   id: number;
   name: string;
   last_name: string;
@@ -18,38 +20,14 @@ export interface Estudiante {
 })
 export class TablesComponent {
 
-  estudiantes: Estudiante[] = [
-  {
-    id: 1,
-    name: 'Aida',
-    last_name: 'Ovejero',
-    birth_date: new Date()
-  },
-  {
-    id: 2,
-    name: 'Julieta',
-    last_name: 'Cardozo',
-    birth_date: new Date()
-  },
-  {
-    id: 3,
-    name: 'Joaquin',
-    last_name: 'Fiora',
-    birth_date: new Date()
-  },
-  {
-    id: 4,
-    name: 'Julio',
-    last_name: 'Fiora',
-    birth_date: new Date()
-  },
-];
 
-  dataSource = new MatTableDataSource(this.estudiantes)
 
-  displayedColumns: string[] = ['id', 'full_name', 'birth_date', 'acciones'];
+  dataSource = new MatTableDataSource<Alumno>();
+
+  displayedColumns: string[] = ['id', 'full_name', 'birth_date', 'see_details','acciones'];
 
   @ViewChild(MatSort) sort!: MatSort;
+  estudiantes: any;
   
 
   ngAfterViewInit() {
@@ -66,9 +44,24 @@ export class TablesComponent {
     this.dataSource.filter = inputValue?.trim()?.toLowerCase();
   }
   
-  constructor(private matDialog: MatDialog) {}
+  constructor(
+    private matDialog: MatDialog, 
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private alumnosService: AlumnosService,
+    ) {
+      this.alumnosService.obtenerAlumnos()
+        .subscribe((alumnos) => {
+          this.dataSource.data = alumnos;
+        })
+      
+    }
   
-
+  goToDetails(userId: number): void{
+    this.router.navigate([userId], {
+      relativeTo: this.activatedRoute,
+    });
+  }
 
   modificarUsuario(index: number) {
     const user = this.estudiantes[index];
