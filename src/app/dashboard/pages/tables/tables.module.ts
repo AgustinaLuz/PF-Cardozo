@@ -13,8 +13,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatSelectModule } from '@angular/material/select'
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatPseudoCheckboxModule } from '@angular/material/core';
-import { CheckboxModule } from 'primeng/checkbox';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSortModule} from '@angular/material/sort';
 import { ObservablesModule } from '../observables/observables.module';
@@ -40,8 +38,6 @@ import { AlumnoDetalleComponent } from './pages/alumno-detalle/alumno-detalle.co
     MatFormFieldModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatPseudoCheckboxModule,
-    CheckboxModule,
     FormsModule,
     MatTooltipModule,
     MatSortModule,

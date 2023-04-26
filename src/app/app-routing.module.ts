@@ -5,6 +5,7 @@ import { TablesComponent } from './dashboard/pages/tables/tables.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/pages/login/login.component';
 import { AlumnoDetalleComponent } from './dashboard/pages/tables/pages/alumno-detalle/alumno-detalle.component';
+import { CursosComponent } from './dashboard/pages/cursos/cursos.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
           },
         ]
       },
+      {
+        path: 'cursos',
+        component: CursosComponent,
+      }
     ]
   },
   {
