@@ -11,6 +11,9 @@ import { DirectivesModule } from 'src/app/shared/directives/directives.module';
 import { ObservablesModule } from './pages/observables/observables.module';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
+import { CursosModule } from './pages/cursos/cursos.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,8 @@ import { MatListModule } from '@angular/material/list';
     ObservablesModule,
     RouterModule,
     MatListModule,
+    CursosModule,
+    
     
   ],
   exports: [

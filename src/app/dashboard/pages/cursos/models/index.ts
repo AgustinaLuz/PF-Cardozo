@@ -1,4 +1,4 @@
-export interface curso {
+export interface Curso {
     id:number;
     name: string;
     start_date: Date;
