@@ -14,11 +14,11 @@ export interface Alumno {
 }
 
 @Component({
-  selector: 'app-tables',
-  templateUrl: './tables.component.html',
-  styleUrls: ['./tables.component.scss']
+  selector: 'app-alumnos',
+  templateUrl: './alumnos.component.html',
+  styleUrls: ['./alumnos.component.scss']
 })
-export class TablesComponent {
+export class AlumnosComponent {
 
 
 
