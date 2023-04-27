@@ -13,13 +13,13 @@ export class AbmCursosComponent implements OnInit {
 
 
   nameControl = new FormControl('', [Validators.required]);
-  last_nameControl = new FormControl('', [Validators.required]);
-  birth_dateControl = new FormControl('', [Validators.required]);
+  start_dateControl = new FormControl('', [Validators.required]);
+  end_dateControl = new FormControl('', [Validators.required]);
 
   cursosForm = new FormGroup<any>({
     name: this.nameControl,
-    last_name: this.last_nameControl,
-    birth_date: this.birth_dateControl
+    start_date: this.start_dateControl,
+    end_date: this.end_dateControl
   });
 
 
@@ -31,7 +31,7 @@ export class AbmCursosComponent implements OnInit {
   guardar(): void {
     if (this.cursosForm.valid) {
       this.dialogRef.close(this.cursosForm.value);
-      this.notificationService.mostrarMensaje('El usuario se creo correctamente');
+      this.notificationService.mostrarMensaje('El curso se creo correctamente');
     } else {
       this.cursosForm.markAllAsTouched();
       

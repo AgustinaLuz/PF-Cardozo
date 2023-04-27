@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CursosService } from './services/cursos.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Curso } from './models';
+import { MatDialog } from '@angular/material/dialog';
+import { AbmCursosComponent } from './components/abm-cursos/abm-cursos.component';
 
 @Component({
   selector: 'app-cursos',
@@ -15,7 +17,7 @@ export class CursosComponent implements OnInit{
 
   displayedColumns = ['id', 'name', 'start_date','end_date', 'see_details', 'acciones'];
 
-  constructor(private cursosService: CursosService) {}
+  constructor(private cursosService: CursosService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
       this.cursosService.obtenerCursos()
@@ -27,6 +29,7 @@ export class CursosComponent implements OnInit{
   }
 
   crearCurso(): void {
+    this.dialog.open(AbmCursosComponent);
 
   }
 
