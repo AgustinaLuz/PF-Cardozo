@@ -29,7 +29,14 @@ export class CursosComponent implements OnInit{
   }
 
   crearCurso(): void {
-    this.dialog.open(AbmCursosComponent);
+    const dialog = this.dialog.open(AbmCursosComponent);
+
+    dialog.afterClosed()
+    .subscribe((formValue) => {
+      if (formValue) {
+      this.cursosService.crearCurso(formValue)
+      }
+    })
 
   }
 

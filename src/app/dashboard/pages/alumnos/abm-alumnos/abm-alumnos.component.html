@@ -28,8 +28,7 @@
         <mat-error *ngFor="let error of last_nameControl.errors | keyvalue">{{ error | controlErrorMessages }}</mat-error>
       </mat-form-field>
     </div>
-  </form>
-</div>
+  
 
 
 
@@ -46,7 +45,8 @@
     <mat-error *ngFor="let error of birth_dateControl.errors | keyvalue">{{ error | controlErrorMessages }}</mat-error>
   </mat-form-field>
 </div>
-
+</form>
+</div>
 
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancelar</button>

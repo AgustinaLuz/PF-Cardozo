@@ -11,6 +11,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -30,7 +33,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatInputModule,
     PipesModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+    MatTooltipModule,
+    MatNativeDateModule
   ]
 })
 export class CursosModule { }

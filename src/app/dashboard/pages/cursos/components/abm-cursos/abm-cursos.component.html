@@ -16,35 +16,30 @@
     </div>
 
 
-    <!-- CONTROL DE Name -->
-    <div class="col-12 field">
-      <mat-form-field class="w-full">
-        <mat-label>Name</mat-label>
-        <input
-          [formControl]="nameControl"
-          type="text"
-          matInput
-        >
-        <mat-error *ngFor="let error of nameControl.errors | keyvalue">{{ error | controlErrorMessages }}</mat-error>
-      </mat-form-field>
-    </div>
-  </form>
-</div>
+    <!-- CONTROL DE fecha de inicio -->
+    <div class="col-6">
+        <mat-form-field class="w-full">
+          <mat-label>Start Date</mat-label>
+          <input [formControl]="start_dateControl" matInput [matDatepicker]="start_datePicker">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="start_datePicker"></mat-datepicker-toggle>
+          <mat-datepicker #start_datePicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+    <!-- CONTROL DE fecha de inicio -->
+      <div class="col-6">
+        <mat-form-field class="w-full">
+          <mat-label>End Date</mat-label>
+          <input [formControl]="end_dateControl" matInput [matDatepicker]="end_datePicker">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="end_datePicker"></mat-datepicker-toggle>
+          <mat-datepicker #end_datePicker></mat-datepicker>
+        </mat-form-field>
+      </div>
 
 
-
- <!-- CONTROL DE fecha -->
-
- <div class="col-12 field">
-  <mat-form-field class="w-full">
-    <mat-label>start date</mat-label>
-    <input
-      [formControl]="start_dateControl"
-      type="text"
-      matInput
-    >
-    <mat-error *ngFor="let error of start_dateControl.errors | keyvalue">{{ error | controlErrorMessages }}</mat-error>
-  </mat-form-field>
+</form>
 </div>
 
 
