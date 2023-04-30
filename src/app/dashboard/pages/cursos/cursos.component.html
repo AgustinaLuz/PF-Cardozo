@@ -26,13 +26,13 @@
 
   <!-- start date Column -->
   <ng-container matColumnDef="start_date">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> start Date </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </th>
     <td mat-cell *matCellDef="let curso"> {{curso.start_date | date: 'dd/MM/YYYY'}} </td>
   </ng-container>
 
     <!-- end date Column -->
   <ng-container matColumnDef="end_date">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> end Date </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> End Date </th>
     <td mat-cell *matCellDef="let curso"> {{curso.end_date | date: 'dd/MM/YYYY'}} </td>
   </ng-container>
 
@@ -40,20 +40,40 @@
   <ng-container matColumnDef="see_details">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let curso" style="text-align: right;">
-        <a class="pointer" (click)="goToDetails(curso.id)" style="color: #e15639" matTooltip="See Course">
+        <a class="pointer" (click)="goToDetails(curso.id)" style="color: #e15639" matTooltip="Details">
             <mat-icon>visibility</mat-icon>
         </a>
     </td>
   </ng-container>
 
+  <!-- Edit Column -->
+  <!-- <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let curso">
+      <a class="pointer" style="color: #1878b0" matTooltip="Edit Course" (click)="editarCurso(curso)">
+        <mat-icon>edit</mat-icon>
+      </a>
+    </td>
+  </ng-container> -->
+
+    <!-- Delete Column -->
+    <!-- <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let curso">
+        <a class="pointer" style="color: #e15639" matTooltip="Delete Course" (click)="eliminarCurso(curso)" >
+          <mat-icon>delete</mat-icon>
+        </a>
+      </td>
+    </ng-container> -->
+
         <!-- Acciones -->
   <ng-container matColumnDef="acciones">
     <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let curso; let i = index" style="text-align: right;">
-        <a class="pointer" style="color: #1878b0" matTooltip="Edit Course" (click)="modificarCurso(i)">
+    <td mat-cell *matCellDef="let curso" style="text-align: right;">
+        <a class="pointer" style="color: #1878b0" matTooltip="Edit Course" (click)="editarCurso(curso)">
             <mat-icon>edit</mat-icon>
         </a>
-        <a class="pointer" (click)="eliminarCurso(i)" style="color: #e15639" matTooltip="Delete Course">
+        <a class="pointer" style="color: #e15639" matTooltip="Delete Course" (click)="eliminarCurso(curso)">
             <mat-icon>delete</mat-icon>
         </a>
     </td>

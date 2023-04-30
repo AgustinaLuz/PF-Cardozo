@@ -11,13 +11,13 @@ const CURSOS_MOCKS: Curso[] = [
   },
   {
     id: 2,
-    name: 'Angular',
+    name: 'JavaScript',
     start_date: new Date(),
     end_date: new Date(),
   },
   {
     id: 3,
-    name: 'Angular',
+    name: 'React',
     start_date: new Date(),
     end_date: new Date(),
   },
@@ -58,4 +58,44 @@ export class CursosService {
 
     return this.cursos$.asObservable();
   }
+
+
+  editarCurso(cursoId: number, actualizacion: Partial<Curso>): Observable<Curso[]> {
+    this.cursos$
+    .pipe(
+      take(1)
+    )
+    .subscribe({
+      next: (cursos) => {
+        const cursosActualizados = cursos.map((curso) => {
+          if  (curso.id === cursoId) {
+            return {
+              ...curso,
+              ...actualizacion,
+            }
+          } else {
+            return curso;
+          }
+        })
+        this.cursos$.next(cursosActualizados);
+      },
+    });
+    return this.cursos$.asObservable();
+  }
+
+  eliminarCurso(cursoId: number): Observable<Curso[]> {
+    this.cursos$
+    .pipe(
+      take(1)
+    )
+    .subscribe({
+      next: (cursos) => {
+        const cursosActualizados = cursos.filter((curso) => curso.id !== cursoId)
+
+        this.cursos$.next(cursosActualizados);
+      },
+    });
+    return this.cursos$.asObservable();
+  }
+
 }

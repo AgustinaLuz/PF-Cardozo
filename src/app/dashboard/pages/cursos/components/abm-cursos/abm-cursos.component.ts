@@ -23,7 +23,15 @@ export class AbmCursosComponent implements OnInit {
   });
 
 
-  constructor(private dialogRef: MatDialogRef<AbmCursosComponent>, @Inject(MAT_DIALOG_DATA) public data: Curso, private notificationService: NotificationsService) {}
+  constructor(private dialogRef: MatDialogRef<AbmCursosComponent>, @Inject(MAT_DIALOG_DATA) private data: any, private notificationService: NotificationsService) {
+    if (data) {
+      const cursoParaEditar = data.curso;
+      this.nameControl.setValue(cursoParaEditar.name);
+      this.start_dateControl.setValue(cursoParaEditar.start_date);
+      this.end_dateControl.setValue(cursoParaEditar.end_date);
+    }
+  }
+
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
@@ -32,6 +40,14 @@ export class AbmCursosComponent implements OnInit {
     if (this.cursosForm.valid) {
       this.dialogRef.close(this.cursosForm.value);
       this.notificationService.mostrarMensaje('El curso se creo correctamente');
+    } else {
+      this.cursosForm.markAllAsTouched();
+      
+    }
+  }
+  eliminarCurso(): void {
+    if (this.cursosForm.valid) {
+      this.notificationService.mostrarMensaje('El curso se elimino correctamente');
     } else {
       this.cursosForm.markAllAsTouched();
       

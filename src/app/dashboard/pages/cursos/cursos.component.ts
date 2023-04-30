@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Curso } from './models';
 import { MatDialog } from '@angular/material/dialog';
 import { AbmCursosComponent } from './components/abm-cursos/abm-cursos.component';
+import { NotificationsService } from 'src/app/core/services/notifications.service';
 
 @Component({
   selector: 'app-cursos',
@@ -17,7 +18,7 @@ export class CursosComponent implements OnInit{
 
   displayedColumns = ['id', 'name', 'start_date','end_date', 'see_details', 'acciones'];
 
-  constructor(private cursosService: CursosService, private dialog: MatDialog) {}
+  constructor(private cursosService: CursosService, private dialog: MatDialog,  private notificationService: NotificationsService) {}
 
   ngOnInit(): void {
       this.cursosService.obtenerCursos()
@@ -39,6 +40,21 @@ export class CursosComponent implements OnInit{
     })
 
   }
+  
+  editarCurso(curso: Curso): void {
+    const dialog = this.dialog.open(AbmCursosComponent, {
+      data: {
+        curso,
+      }
+    })
+    dialog.afterClosed()
+     .subscribe((formValue) => {
+      if (formValue) {
+        this.cursosService.editarCurso(curso.id, formValue);
+      }
+
+     })
+  }
 
   applyFilters(ev: Event): void{
 
@@ -48,12 +64,12 @@ export class CursosComponent implements OnInit{
 
   }
 
-  modificarCurso(curso: Curso): void {
-
-  }
 
   eliminarCurso(curso: Curso): void {
-
+    this.cursosService.eliminarCurso(curso.id)
+    if (true) {
+      this.notificationService.mostrarMensaje2('El usuario se borró correctamente')
+    }
+  
   }
-
 }
