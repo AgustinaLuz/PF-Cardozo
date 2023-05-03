@@ -17,6 +17,8 @@ export class CursosComponent implements OnInit{
   dataSource = new MatTableDataSource();
 
   displayedColumns = ['id', 'name', 'start_date','end_date', 'see_details', 'acciones'];
+  router: any;
+  activatedRoute: any;
 
   constructor(private cursosService: CursosService, private dialog: MatDialog,  private notificationService: NotificationsService) {}
 
@@ -60,15 +62,17 @@ export class CursosComponent implements OnInit{
 
   }
 
-  goToDetails(cursoId: number): void{
 
+  goToDetails(userId: number): void{
+    this.router.navigate([userId], {
+      relativeTo: this.activatedRoute,
+    });
   }
-
 
   eliminarCurso(curso: Curso): void {
     this.cursosService.eliminarCurso(curso.id)
     if (true) {
-      this.notificationService.mostrarMensaje2('El usuario se borró correctamente')
+      this.notificationService.mostrarMensaje2('El usuario se borró correctamente');
     }
   
   }

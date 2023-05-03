@@ -12,37 +12,12 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    children: [
-      {
-        path: 'estudiantes',
-        children:[
-          {
-            // dashboard/estudiantes
-            path: '',
-            component: AlumnosComponent,
-          },
-          {
-            //dashboard/estudiantes/:id
-            path: ':id',
-            component: AlumnoDetalleComponent,
-          },
-        ]
-      },
-      {
-        path: 'cursos',
-        component: CursosComponent,
-      }
-    ]
+    loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule)
   },
   {
     path: 'auth',
     component: AuthComponent,
-    children: [
-      {
-        path: 'login',
-        component: LoginComponent,
-      }
-    ]
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: '**',

@@ -14,13 +14,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.component';
 
 
 
 @NgModule({
   declarations: [
     CursosComponent,
-    AbmCursosComponent
+    AbmCursosComponent,
+    CursoDetalleComponent
   ],
   imports: [
     CommonModule,

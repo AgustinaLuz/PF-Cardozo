@@ -17,6 +17,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSortModule} from '@angular/material/sort';
 import { ObservablesModule } from '../observables/observables.module';
 import { AlumnoDetalleComponent } from './pages/alumno-detalle/alumno-detalle.component';
+import { AlumnosRoutingModule } from './alumnos-routing.module';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AlumnoDetalleComponent } from './pages/alumno-detalle/alumno-detalle.co
     FormsModule,
     MatTooltipModule,
     MatSortModule,
-    ObservablesModule, 
+    ObservablesModule,
+    AlumnosRoutingModule,
     
   ],
   exports: [
