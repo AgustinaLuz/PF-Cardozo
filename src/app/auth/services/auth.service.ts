@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+  catchError,
+  map,
+  of,
+} from 'rxjs';
 import { Usuario } from '../../core/models';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export interface LoginFormValue {
   email: string;
@@ -11,22 +17,19 @@ export interface LoginFormValue {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   private authUser$ = new BehaviorSubject<Usuario | null>(null);
   authUserObs$: any;
-  
 
-  constructor(private router: Router, 
-    private httpClient: HttpClient) { }
+  constructor(private router: Router, private httpClient: HttpClient) {}
 
-  obtenerUsuarioAutenticado(): Observable<Usuario | null>{
+  obtenerUsuarioAutenticado(): Observable<Usuario | null> {
     return this.authUser$.asObservable();
   }
-  
-  login(formValue: LoginFormValue): void{
+
+  login(formValue: LoginFormValue): void {
     // const usuario: Usuario = {
     //   id: 1,
     //   name: 'MOCK',
@@ -38,42 +41,53 @@ export class AuthService {
     // this.authUser$.next(usuario);
     // this.router.navigate(['dashboard']);
 
-    this.httpClient.get<Usuario[]>(
-      `http://localhost:3000/usuarios?`,
-      {
+    this.httpClient
+      .get<Usuario[]>(`http://localhost:3000/usuarios?`, {
         params: {
-          ...formValue
+          ...formValue,
         },
-      }
-    ).subscribe({
-      next: (usuarios) => {
-        const usuarioAutenticado = usuarios[0];
+      })
+      .subscribe({
+        next: (usuarios) => {
+          const usuarioAutenticado = usuarios[0];
 
-        if (usuarioAutenticado) {
-          localStorage.setItem('token', usuarioAutenticado.token);
-          this.authUser$.next(usuarioAutenticado);
-          this.router.navigate(['dashboard']);
-        } else {
-          alert('User and password incorrect!')
-        }
-      }
-    })
-
+          if (usuarioAutenticado) {
+            localStorage.setItem('token', usuarioAutenticado.token);
+            this.authUser$.next(usuarioAutenticado);
+            this.router.navigate(['dashboard']);
+          } else {
+            alert('User and password incorrect!');
+          }
+        },
+      });
   }
 
   logout(): void {
-    localStorage.removeItem('auth-user');
+    localStorage.removeItem('token');
     this.authUser$.next(null);
     this.router.navigate(['auth']);
   }
 
-
-  verificarStorage(): void {
-    const storageValor = localStorage.getItem('token');
-    if (storageValor) {
-      const usuario = JSON.parse(storageValor);
-      this.authUser$.next(usuario);
-    }
+  public verificarToken(): Observable<boolean> {
+    const token = localStorage.getItem('token');
+    return this.httpClient
+      .get<Usuario[]>(`http://localhost:3000/usuarios?token=${token}`, {
+        headers: new HttpHeaders({
+          Authorization: token || '',
+        }),
+      })
+      .pipe(
+        map((usuarios) => {
+          const usuarioAutenticado = usuarios[0];
+          if (usuarioAutenticado) {
+            localStorage.setItem('token', usuarioAutenticado.token);
+            this.authUser$.next(usuarioAutenticado);
+          }
+          return !!usuarioAutenticado;
+        }),
+        catchError((err) => {
+          return of(false);
+        })
+      );
   }
-
 }

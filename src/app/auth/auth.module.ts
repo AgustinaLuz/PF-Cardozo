@@ -40,7 +40,6 @@ const routes: Routes = [
     MatIconModule,
     ReactiveFormsModule,
     PipesModule
-    
   ]
 })
 export class AuthModule { }
