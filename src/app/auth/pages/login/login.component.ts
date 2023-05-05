@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService, LoginFormValue } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +15,14 @@ export class LoginComponent {
     password: this.passwordControl,
   });
 
+  constructor(private authService: AuthService) {}
 
   onSubmit(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
     } else {
       console.log(this.loginForm.value);
-      // this.authService.login(this.loginForm.value as LoginFormValue)
+      this.authService.login(this.loginForm.value as LoginFormValue)
     }
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { AuthService } from '../core/services/auth.service';
+import { AuthService } from '../auth/services/auth.service';
 import { Usuario } from '../core/models';
 import { Observable, Subject, Subscription, map, takeUntil } from 'rxjs';
 import links from './nav-items';
@@ -16,7 +16,7 @@ export class DashboardComponent implements OnDestroy{
 
   authUser: Usuario | null = null;
 
-  authUserObs$: Observable<Usuario>;
+  authUserObs$: Observable<Usuario | null>;
 
   links = links;
 
@@ -32,11 +32,11 @@ export class DashboardComponent implements OnDestroy{
     this.authUserObs$ = this.authService.obtenerUsuarioAutenticado()
 
     this.authService.obtenerUsuarioAutenticado()
-      .pipe(
-        takeUntil(this.destroyed$),
-        map(usuario => ({...usuario, name: usuario.name.toUpperCase()}))
-      )
-      .subscribe((usuario) => this.authUser = usuario);
+      // .pipe(
+      //   takeUntil(this.destroyed$),
+      //   map(usuario => ({...usuario, name: usuario.name.toUpperCase()}))
+      // )
+      // .subscribe((usuario) => this.authUser = usuario);
 }
 
   ngOnDestroy(): void {
@@ -47,6 +47,6 @@ export class DashboardComponent implements OnDestroy{
 
 
   logout(): void {
-    this.router.navigate(['auth', 'login'])
+    this.authService.logout();
   }
 }

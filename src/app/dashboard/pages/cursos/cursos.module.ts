@@ -15,6 +15,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -38,7 +39,13 @@ import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.compo
     MatDialogModule,
     MatDatepickerModule,
     MatTooltipModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: CursosComponent
+      }
+    ])
   ]
 })
 export class CursosModule { }

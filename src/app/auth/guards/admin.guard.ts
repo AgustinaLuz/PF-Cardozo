@@ -1,29 +1,29 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private authService: AuthService) {}
-  
+export class AdminGuard implements CanActivate {
+  constructor(private authService: AuthService) {}
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-    return this.authService.obtenerUsuarioAutenticado()
+    
+      return this.authService.obtenerUsuarioAutenticado()
       .pipe(
-        map((usuarioAutentica) => {
-          if (!usuarioAutentica) {
-            return this.router.createUrlTree(['auth', 'login'])
+        map((usuarioAutenticado) => {
+          if (usuarioAutenticado?.role !== 'admin') {
+            alert('access denied')
+            return false;
           } else {
             return true;
           }
         })
       )
-    
   }
   
-}
+} 

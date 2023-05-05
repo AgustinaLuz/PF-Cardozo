@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AlumnosComponent } from './alumnos.component';
 import {MatTableModule} from '@angular/material/table';
@@ -18,6 +18,7 @@ import {MatSortModule} from '@angular/material/sort';
 import { ObservablesModule } from '../observables/observables.module';
 import { AlumnoDetalleComponent } from './pages/alumno-detalle/alumno-detalle.component';
 import { AlumnosRoutingModule } from './alumnos-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,17 @@ import { AlumnosRoutingModule } from './alumnos-routing.module';
     MatTooltipModule,
     MatSortModule,
     ObservablesModule,
-    AlumnosRoutingModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: AlumnosComponent
+      },
+      {
+        path: '',
+        component: AlumnoDetalleComponent
+      },
+
+    ]),
     
   ],
   exports: [

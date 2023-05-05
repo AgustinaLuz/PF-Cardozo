@@ -1,0 +1,22 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "name": "Luz",
+      "lastName": "Cardozo",
+      "email": "luz@mail.com",
+      "password": "123456",
+      "token": "sbvkjsnt565%&%vbrfgBDBDT%&4$dbfg",
+      "role": "admin"
+    },
+    {
+      "name": "juli",
+      "lastName": "Cardozo",
+      "email": "juli@mail.com",
+      "password": "123456",
+      "token": "BGFrf4gsbvkjsnt565%&%vbrfgBDBDT%&4$dbfg",
+      "role": "user",
+      "id": 4
+    }
+  ]
+}
