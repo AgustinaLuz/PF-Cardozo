@@ -17,8 +17,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSortModule} from '@angular/material/sort';
 import { ObservablesModule } from '../observables/observables.module';
 import { AlumnoDetalleComponent } from './pages/alumno-detalle/alumno-detalle.component';
-import { AlumnosRoutingModule } from './alumnos-routing.module';
 import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +51,7 @@ import { RouterModule } from '@angular/router';
       },
       {
         path: '',
-        component: AlumnoDetalleComponent
+        component: AlumnoDetalleComponent,
       },
 
     ]),

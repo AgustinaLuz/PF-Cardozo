@@ -30,6 +30,7 @@ import { AdminGuard } from '../auth/guards/admin.guard';
     ObservablesModule,
     RouterModule,
     MatListModule,
+    
     RouterModule.forChild([
       {
           path: 'estudiantes',

@@ -30,7 +30,6 @@ const routes: Routes = [
   declarations: [
     LoginComponent,
     AuthComponent,
-    RegisterComponent
   ],
   imports: [
     CommonModule,
