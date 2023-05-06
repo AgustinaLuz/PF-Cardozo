@@ -58,6 +58,7 @@ export class AlumnosComponent {
     }
   
   goToDetails(userId: number): void{
+    console.log(userId);
     this.router.navigate([userId], {
       relativeTo: this.activatedRoute,
     });

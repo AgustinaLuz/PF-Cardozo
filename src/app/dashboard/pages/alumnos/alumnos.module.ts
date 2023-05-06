@@ -18,6 +18,7 @@ import {MatSortModule} from '@angular/material/sort';
 import { ObservablesModule } from '../observables/observables.module';
 import { AlumnoDetalleComponent } from './pages/alumno-detalle/alumno-detalle.component';
 import { RouterModule } from '@angular/router';
+import { AlumnosRoutingModule } from './alumnos-routing.module';
 
 
 @NgModule({
@@ -44,17 +45,18 @@ import { RouterModule } from '@angular/router';
     MatTooltipModule,
     MatSortModule,
     ObservablesModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: AlumnosComponent
-      },
-      {
-        path: '',
-        component: AlumnoDetalleComponent,
-      },
+    AlumnosRoutingModule
+    // RouterModule.forChild([
+    //   {
+    //     path: '',
+    //     component: AlumnosComponent
+    //   },
+    //   {
+    //     path: ':id',
+    //     component: AlumnoDetalleComponent,
+    //   },
 
-    ]),
+    // ]),
     
   ],
   exports: [

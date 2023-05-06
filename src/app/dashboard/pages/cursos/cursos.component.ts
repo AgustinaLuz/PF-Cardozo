@@ -5,6 +5,7 @@ import { Curso } from './models';
 import { MatDialog } from '@angular/material/dialog';
 import { AbmCursosComponent } from './components/abm-cursos/abm-cursos.component';
 import { NotificationsService } from 'src/app/core/services/notifications.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cursos',
@@ -17,10 +18,10 @@ export class CursosComponent implements OnInit{
   dataSource = new MatTableDataSource();
 
   displayedColumns = ['id', 'name', 'start_date','end_date', 'see_details', 'acciones'];
-  router: any;
-  activatedRoute: any;
 
-  constructor(private cursosService: CursosService, private dialog: MatDialog,  private notificationService: NotificationsService) {}
+
+  constructor(private cursosService: CursosService, private dialog: MatDialog, private router: Router,
+    private activatedRoute: ActivatedRoute, private notificationService: NotificationsService) {}
 
   ngOnInit(): void {
       this.cursosService.obtenerCursos()
@@ -63,8 +64,8 @@ export class CursosComponent implements OnInit{
   }
 
 
-  goToDetails(userId: number): void{
-    this.router.navigate([userId], {
+  goToDetails(cursoId: number): void{
+    this.router.navigate([cursoId], {
       relativeTo: this.activatedRoute,
     });
   }

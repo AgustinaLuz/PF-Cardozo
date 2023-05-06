@@ -15,6 +15,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
+import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.component';
 
 
 
@@ -42,6 +43,10 @@ import { RouterModule } from '@angular/router';
       {
         path: '',
         component: CursosComponent
+      },
+      {
+        path: ':id',
+        component: CursoDetalleComponent,
       }
     ])
   ]
