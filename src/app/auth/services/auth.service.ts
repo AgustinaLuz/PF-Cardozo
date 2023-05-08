@@ -88,8 +88,8 @@ export class AuthService {
           return !!usuarioAutenticado;
         }),
         catchError((err) => {
-          alert('Error verifying token');
-          return throwError(() => err);
+          // alert('Error verifying token');
+          return of (false);
         })
       );
   }
