@@ -23,7 +23,8 @@ export class LoginGuard implements CanActivate {
     | boolean
     | UrlTree {
 
-    return this.authService.verificarToken().pipe(
+    return this.authService.verificarToken()
+    .pipe(
       map((usuarioAutenticado) => {
         if (usuarioAutenticado) {
           return this.router.createUrlTree(['dashboard']);

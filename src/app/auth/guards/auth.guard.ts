@@ -15,8 +15,8 @@ export class AuthGuard implements CanActivate {
 
     return this.authService.verificarToken()
       .pipe(
-        map((usuarioAutentica) => {
-          if (!usuarioAutentica) {
+        map((usuarioAutenticado) => {
+          if (!usuarioAutenticado) {
             return this.router.createUrlTree(['auth', 'login'])
           } else {
             return true;

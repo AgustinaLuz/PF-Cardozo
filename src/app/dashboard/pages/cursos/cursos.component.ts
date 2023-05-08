@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CursosService } from './services/cursos.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Curso } from './models';
@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './cursos.component.html',
   styleUrls: ['./cursos.component.scss']
 })
-export class CursosComponent implements OnInit{
+export class CursosComponent implements OnInit, OnDestroy{
 
 
   dataSource = new MatTableDataSource();
@@ -22,14 +22,18 @@ export class CursosComponent implements OnInit{
 
   constructor(private cursosService: CursosService, private dialog: MatDialog, private router: Router,
     private activatedRoute: ActivatedRoute, private notificationService: NotificationsService) {}
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
+  }
 
   ngOnInit(): void {
-      this.cursosService.obtenerCursos()
-        .subscribe({
-          next: (cursos) => {
-            this.dataSource.data = cursos;
-          }
-        });
+    this.cursosService.cursos.subscribe({
+      next: (cursos) => {
+        this.dataSource.data = cursos;
+      }
+    })
+    this.cursosService.obtenerCursos();
+      
   }
 
   crearCurso(): void {

@@ -6,6 +6,7 @@ import {
   catchError,
   map,
   of,
+  throwError,
 } from 'rxjs';
 import { Usuario } from '../../core/models';
 import { Router } from '@angular/router';
@@ -71,9 +72,10 @@ export class AuthService {
   public verificarToken(): Observable<boolean> {
     const token = localStorage.getItem('token');
     return this.httpClient
-      .get<Usuario[]>(`http://localhost:3000/usuarios?token=${token}`, {
+      .get<Usuario[]>(`http://localhost:3000/usuarios?token=${token}`, 
+      {
         headers: new HttpHeaders({
-          Authorization: token || '',
+          'Authorization': token || '',
         }),
       })
       .pipe(
@@ -86,7 +88,8 @@ export class AuthService {
           return !!usuarioAutenticado;
         }),
         catchError((err) => {
-          return of(false);
+          alert('Error verifying token');
+          return throwError(() => err);
         })
       );
   }

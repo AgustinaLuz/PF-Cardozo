@@ -18,5 +18,25 @@
       "role": "user",
       "id": 4
     }
+  ],
+  "cursos": [
+    {
+      "id": 1,
+      "name": "Angular",
+      "start_date": "2023-05-08T15:46:04.130Z",
+      "end_date": "2023-05-08T15:46:04.130Z"
+    },
+    {
+      "id": 2,
+      "name": "JavaScript",
+      "start_date": "2023-05-08T15:46:04.130Z",
+      "end_date": "2023-05-08T15:46:04.130Z"
+    },
+    {
+      "id": 3,
+      "name": "React",
+      "start_date": "2023-05-08T15:46:04.130Z",
+      "end_date": "2023-05-08T15:46:04.130Z"
+    }
   ]
 }
