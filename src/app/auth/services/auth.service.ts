@@ -30,6 +30,10 @@ export class AuthService {
     return this.authUser$.asObservable();
   }
 
+  establecerUsuarioAutenticado(usuario: Usuario): void {
+    this.authUser$.next(usuario);
+  }
+
   login(formValue: LoginFormValue): void {
     // const usuario: Usuario = {
     //   id: 1,
@@ -54,7 +58,7 @@ export class AuthService {
 
           if (usuarioAutenticado) {
             localStorage.setItem('token', usuarioAutenticado.token);
-            this.authUser$.next(usuarioAutenticado);
+            this.establecerUsuarioAutenticado(usuarioAutenticado);
             this.router.navigate(['dashboard']);
           } else {
             alert('User and password incorrect!');
