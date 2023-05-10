@@ -3,7 +3,8 @@
   <!-- sidebar -->
   <mat-drawer [opened]="true" #drawer class="example-sidenav" mode="side">
     <img width="50" height="50" src="../../assets/img/avatar.png"><br>
-    <p>{{ authUser?.email }}</p><br>
+    <p >{{ (authUserObs$ | async)?.name }}</p>
+    <p >{{ (authUserObs$ | async)?.email }}</p>
     <button mat-button routerLink="">Dashboard</button><br>
     <button mat-button routerLink="">Usuarios</button><br>
     <mat-nav-list>
