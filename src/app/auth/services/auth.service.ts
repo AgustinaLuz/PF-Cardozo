@@ -51,7 +51,7 @@ export class AuthService {
     // this.router.navigate(['dashboard']);
 
     this.httpClient
-      .get<Usuario[]>(`http://localhost:3000/usuarios?`, {
+      .get<Usuario[]>(`http://localhost:3000/users?`, {
         params: {
           ...formValue,
         },
@@ -81,7 +81,7 @@ export class AuthService {
   public verificarToken(): Observable<boolean> {
     const token = localStorage.getItem('token');
     return this.httpClient
-      .get<Usuario[]>(`http://localhost:3000/usuarios?token=${token}`, 
+      .get<Usuario[]>(`http://localhost:3000/users?token=${token}`, 
       {
         headers: new HttpHeaders({
           'Authorization': token || '',

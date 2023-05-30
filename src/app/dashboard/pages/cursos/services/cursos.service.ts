@@ -6,19 +6,19 @@ import { HttpClient } from '@angular/common/http';
 const CURSOS_MOCKS: Curso[] = [
   {
     id: 1,
-    name: 'Angular',
+    subjectId: 3,
     start_date: new Date(),
     end_date: new Date(),
   },
   {
     id: 2,
-    name: 'JavaScript',
+    subjectId: 3,
     start_date: new Date(),
     end_date: new Date(),
   },
   {
     id: 3,
-    name: 'React',
+    subjectId: 3,
     start_date: new Date(),
     end_date: new Date(),
   },
@@ -42,7 +42,7 @@ export class CursosService {
 
   obtenerCursos(): void {
     
-    this.HttpClient.get<Curso[]>(`http://localhost:3000/cursos`)
+    this.HttpClient.get<Curso[]>(`http://localhost:3000/courses`)
       .subscribe({
         next: (cursos) => {
           this.cursos$.next(cursos);

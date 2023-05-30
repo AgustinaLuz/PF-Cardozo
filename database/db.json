@@ -1,5 +1,5 @@
 {
-  "usuarios": [
+  "users": [
     {
       "id": 1,
       "name": "Luz",
@@ -19,22 +19,67 @@
       "id": 4
     }
   ],
-  "cursos": [
+  "courses": [
     {
       "id": 1,
-      "name": "Angular",
+      "subjectId": 1,
       "start_date": "2023-05-08T15:46:04.130Z",
       "end_date": "2023-05-08T15:46:04.130Z"
     },
     {
       "id": 2,
-      "name": "JavaScript",
+      "subjectId": 2,
       "start_date": "2023-05-08T15:46:04.130Z",
       "end_date": "2023-05-08T15:46:04.130Z"
     },
     {
       "id": 3,
-      "name": "React",
+      "subjectId": 3,
+      "start_date": "2023-05-08T15:46:04.130Z",
+      "end_date": "2023-05-08T15:46:04.130Z"
+    }
+
+  ],
+  "subjects": [
+    {
+      "id": 1,
+      "name": "Angular"
+    },
+    {
+      "id": 2,
+      "name": "JavaScript"
+    },
+    {
+      "id": 3,
+      "name": "React"
+    }
+  ],
+  "inscriptions": [
+    {
+      "id": 1,
+      "subjectId": 2,
+      "studentId": 3,
+      "courseId": 1
+    },
+    {
+      "id": 2,
+      "subjectId": 2,
+      "studentId": 1,
+      "courseId": 2
+    }
+  ],
+  "students": [
+    {
+      "id": 3,
+      "name": "Chiara",
+      "lastName": "Ferrari",
+      "start_date": "2023-05-08T15:46:04.130Z",
+      "end_date": "2023-05-08T15:46:04.130Z"
+    },
+    {
+      "id": 1,
+      "name": "Pepe",
+      "lastName": "Suarez",
       "start_date": "2023-05-08T15:46:04.130Z",
       "end_date": "2023-05-08T15:46:04.130Z"
     }

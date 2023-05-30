@@ -14,6 +14,11 @@ const links: NavItem[] = [
         path: 'cursos',
         title: 'Cursos',
         icon: 'school',
+    },
+    {
+        path: 'inscripciones',
+        title: 'Inscripciones',
+        icon: 'book',
     }
 ]
 

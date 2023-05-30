@@ -17,7 +17,7 @@ export class CursosComponent implements OnInit, OnDestroy{
 
   dataSource = new MatTableDataSource();
 
-  displayedColumns = ['id', 'name', 'start_date','end_date', 'see_details', 'acciones'];
+  displayedColumns = ['id', 'start_date','end_date', 'see_details', 'acciones'];
 
 
   constructor(private cursosService: CursosService, private dialog: MatDialog, private router: Router,
