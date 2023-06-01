@@ -13,4 +13,8 @@ export class InscripcionesService {
   getAllInscripciones(): Observable<InscripcionWithAll[]> {
     return this.httpClient.get<InscripcionWithAll[]>(`http://localhost:3000/inscriptions?_expand=course&_expand=student&_expand=subject`)
   }
+
+  deleteInscripcioneById(id: number): Observable<unknown> {
+    return this.httpClient.delete(`http://localhost:3000/inscriptions?_expand=course&_expand=student&_expand=subject`)
+  }
 }

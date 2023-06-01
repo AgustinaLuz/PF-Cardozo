@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap } from 'rxjs/operators';
 import { Observable, EMPTY, of } from 'rxjs';
 import { InscripcionesActions } from './inscripciones.actions';
+import { InscripcionesService } from '../services/inscripciones.service';
 
 
 @Injectable()
@@ -14,13 +15,25 @@ export class InscripcionesEffects {
       ofType(InscripcionesActions.loadInscripciones),
       concatMap(() =>
         /** An EMPTY observable only emits completion. Replace with your own observable API request */
-        EMPTY.pipe(
+        this.inscripcionesService.getAllInscripciones().pipe(
           map(data => InscripcionesActions.loadInscripcionesSuccess({ data })),
           catchError(error => of(InscripcionesActions.loadInscripcionesFailure({ error }))))
       )
     );
   });
 
+  deleteInscripcion$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(InscripcionesActions.deleteInscripcion),
+      concatMap((action) => 
+      this.inscripcionesService.deleteInscripcioneById(action.id).pipe(
+        map(data => InscripcionesActions.deleteInscripcionSuccess({ data: action.id })),
+        catchError(error => of(InscripcionesActions.deleteInscripcionFailure({ error })))
+        )
+      )
+    )
+  })
 
-  constructor(private actions$: Actions) {}
+
+  constructor(private actions$: Actions, private inscripcionesService: InscripcionesService) {}
 }

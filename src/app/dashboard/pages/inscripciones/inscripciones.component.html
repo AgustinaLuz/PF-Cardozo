@@ -1,2 +1,14 @@
-<p>inscripciones works!</p>
-<p>hola</p>
+<p *ngIf="(state$ | async)?.loading; else ifNotLoading"> LOADING DATA... </p>
+
+<ng-template #ifNotLoading>
+    <!--<pre>{{ (state$ | async)?.inscripciones | json }}</pre>-->
+
+    <ul>
+        <li *ngFor="let inscripcion of (state$ | async)?.inscripciones">
+            {{ inscripcion.student.name + ' - ' + inscripcion.subject.nombre }}
+            <button (click)="eliminarInscripcionPorId(inscripcion.id)" type="button">
+                delete
+            </button>
+        </li>
+    </ul>
+</ng-template>
