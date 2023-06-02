@@ -1,0 +1,15 @@
+<h1> Create inscription </h1>
+
+<div mat-dialog-content>
+    <form [formGroup]="inscripcionForm">
+        <mat-select [formControl]="studentIdControl">
+            <label>Select</label>
+            <mat-option *ngFor="let alumno of alumnos">{{ alumno.name }} {{alumno.last_name}}</mat-option>
+            
+        </mat-select>
+    </form>
+</div>
+
+
+<button mat-button type="button">Cancel</button>
+<button mat-button type="button">Save</button>

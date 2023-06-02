@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, map } from 'rxjs';
 import { Alumno } from '../alumnos.component';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,11 @@ export class AlumnosService {
       },
     ])
 
-    constructor() { }
+    constructor(private httpClient: HttpClient) { }
+
+    getStudentsFromDB(): Observable<Alumno[]>{
+      return this.httpClient.get<Alumno[]>(`http://localhost:3000/students`);
+    }
 
     obtenerAlumnos(): Observable<Alumno[]>{
 

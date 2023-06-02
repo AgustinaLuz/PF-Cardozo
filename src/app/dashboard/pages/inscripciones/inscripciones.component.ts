@@ -5,6 +5,8 @@ import { InscripcionesActions } from './store/inscripciones.actions';
 import { Observable } from 'rxjs';
 import { selectInscripcionesState } from './store/inscripciones.selectors';
 import { State } from './store/inscripciones.reducer';
+import { MatDialog } from '@angular/material/dialog';
+import { InscripcionDialogComponent } from './componentes/inscripcion-dialog/inscripcion-dialog.component';
 
 @Component({
   selector: 'app-inscripciones',
@@ -17,6 +19,7 @@ export class InscripcionesComponent implements OnInit{
   
   constructor(
     private inscripcionesService: InscripcionesService,
+    private matDialog: MatDialog,
     private store: Store,
     ) {
       this.state$ = this.store.select(selectInscripcionesState);
@@ -28,5 +31,9 @@ export class InscripcionesComponent implements OnInit{
 
   eliminarInscripcionPorId(id: number): void{
     this.store.dispatch(InscripcionesActions.deleteInscripcion({ id }))
+  }
+
+  crearInscripcion(): void{
+    this.matDialog.open(InscripcionDialogComponent)
   }
 }
