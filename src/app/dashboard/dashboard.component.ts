@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { AuthService } from '../auth/services/auth.service';
 import { Usuario } from '../core/models';
 import { Observable, Subject, Subscription, map, takeUntil } from 'rxjs';
-import links from './nav-items';
+import links, { NavItem } from './nav-items';
 import { Router } from '@angular/router';
 
 @Component({
@@ -48,5 +48,13 @@ export class DashboardComponent implements OnDestroy{
 
   logout(): void {
     this.authService.logout();
+  }
+
+  verifyRole(link: NavItem): Observable<boolean>{
+    return this.authUserObs$.pipe(map((usuarioAuth) =>
+        link.allowedRoles.some((r) => r === usuarioAuth?.role)
+    )
+    );
+    
   }
 }

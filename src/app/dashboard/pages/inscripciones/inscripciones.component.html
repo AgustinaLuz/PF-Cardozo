@@ -6,7 +6,7 @@
     <button (click)="crearInscripcion()" type="button" mat-button>Create an inscription</button>
     <ul>
         <li *ngFor="let inscripcion of (state$ | async)?.inscripciones">
-            {{ inscripcion.student.name + ' - ' + inscripcion.subject.nombre }}
+            {{ inscripcion.student.name + ' - ' + inscripcion.subject.name }}
             <button (click)="eliminarInscripcionPorId(inscripcion.id)" type="button">
                 delete
             </button>

@@ -5,12 +5,16 @@
     <img width="50" height="50" src="../../assets/img/avatar.png"><br>
     <p >{{ (authUserObs$ | async)?.name }}</p>
     <p >{{ (authUserObs$ | async)?.email }}</p>
+    <p >{{ (authUserObs$ | async)?.role }}</p>
     <button mat-button routerLink="">Dashboard</button><br>
     <button mat-button routerLink="">Usuarios</button><br>
     <mat-nav-list>
-      <a mat-list-item [routerLink]="link.path" *ngFor="let link of links">
+      <ng-container *ngFor="let link of links">
+      <a mat-list-item [routerLink]="link.path" *ngIf="
+      !link.allowedRoles.length || (verifyRole(link) | async)">
         <mat-icon *ngIf="link.icon">{{ link.icon }}</mat-icon>{{ link.title }}
       </a>
+    </ng-container>
     </mat-nav-list>
     <button
     (click)="logout()"

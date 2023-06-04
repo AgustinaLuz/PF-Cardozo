@@ -1,5 +1,5 @@
 export interface Subject {
     id: number;
-    nombre: string;
+    name: string;
     description?: string;
 }

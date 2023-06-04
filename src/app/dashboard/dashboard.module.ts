@@ -37,6 +37,7 @@ import { AdminGuard } from '../auth/guards/admin.guard';
       },
       {
           path: 'cursos',
+          canActivate: [AdminGuard],
           loadChildren: () => import('./pages/cursos/cursos.module').then((m) => m.CursosModule),
       },
       {

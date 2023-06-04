@@ -23,7 +23,7 @@ export class CursosComponent implements OnInit, OnDestroy{
   constructor(private cursosService: CursosService, private dialog: MatDialog, private router: Router,
     private activatedRoute: ActivatedRoute, private notificationService: NotificationsService) {}
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    // Unsubscribe from any subscriptions or perform cleanup tasks here
   }
 
   ngOnInit(): void {
@@ -82,3 +82,5 @@ export class CursosComponent implements OnInit, OnDestroy{
   
   }
 }
+export { Curso };
+

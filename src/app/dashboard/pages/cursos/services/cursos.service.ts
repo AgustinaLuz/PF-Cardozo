@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, take } from 'rxjs';
-import { CrearCursoPayload, Curso } from '../models';
+import { BehaviorSubject, Observable ,map, mergeMap, pipe, take, tap } from 'rxjs';
+import { CrearCursoPayload, Curso, CursoWithSubject } from '../models';
 import { HttpClient } from '@angular/common/http';
 
 const CURSOS_MOCKS: Curso[] = [
@@ -40,16 +40,31 @@ export class CursosService {
     return this.cursos$.asObservable();
   }
 
-  obtenerCursos(): void {
+  // obtenerCursos(): void {
     
-    this.HttpClient.get<Curso[]>(`http://localhost:3000/courses`)
-      .subscribe({
-        next: (cursos) => {
-          this.cursos$.next(cursos);
-        }
-      })
+  //   this.HttpClient.get<Curso[]>(`http://localhost:3000/courses`)
+  //     .subscribe({
+  //       next: (cursos) => {
+  //         this.cursos$.next(cursos);
+  //       }
+  //     })
+  // }
+  
+  obtenerCursos(): Observable<Curso[]> {
+    return this.HttpClient.get<Curso[]>(`http://localhost:3000/courses?_expand=subject`)
+    .pipe(
+      tap((cursos) => this.cursos$.next(cursos)),
+      mergeMap(() => this.cursos$.asObservable())
+    );
   }
-
+  obtenerCursosWithSubject(): Observable<CursoWithSubject[]> {
+    return this.HttpClient.get<CursoWithSubject[]>(`http://localhost:3000/courses?_expand=subject`
+    )
+    .pipe(
+      tap((cursos) => this.cursos$.next(cursos))
+    );
+  }
+ 
 
   getCursoById(cursoId: number): Observable<Curso | undefined> {
     return this.cursos$.asObservable()

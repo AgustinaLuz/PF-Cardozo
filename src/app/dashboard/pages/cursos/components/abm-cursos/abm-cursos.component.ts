@@ -9,8 +9,7 @@ import { NotificationsService } from 'src/app/core/services/notifications.servic
   templateUrl: './abm-cursos.component.html',
   styleUrls: ['./abm-cursos.component.scss']
 })
-export class AbmCursosComponent implements OnInit {
-
+export class AbmCursosComponent {
 
   nameControl = new FormControl('', [Validators.required]);
   start_dateControl = new FormControl('', [Validators.required]);
@@ -32,9 +31,7 @@ export class AbmCursosComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+
 
   guardar(): void {
     if (this.cursosForm.valid) {
