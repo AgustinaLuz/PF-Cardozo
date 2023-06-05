@@ -40,23 +40,22 @@ export class CursosService {
     return this.cursos$.asObservable();
   }
 
-  // obtenerCursos(): void {
+  obtenerCursos(): void {
     
-  //   this.HttpClient.get<Curso[]>(`http://localhost:3000/courses`)
-  //     .subscribe({
-  //       next: (cursos) => {
-  //         this.cursos$.next(cursos);
-  //       }
-  //     })
-  // }
-  
-  obtenerCursos(): Observable<Curso[]> {
-    return this.HttpClient.get<Curso[]>(`http://localhost:3000/courses?_expand=subject`)
-    .pipe(
-      tap((cursos) => this.cursos$.next(cursos)),
-      mergeMap(() => this.cursos$.asObservable())
-    );
+    this.HttpClient.get<Curso[]>(`http://localhost:3000/courses`)
+      .subscribe({
+        next: (cursos) => {
+          this.cursos$.next(cursos);
+        }
+      })
   }
+  
+  // obtenerCursos(): Observable<Curso[]> {
+  //   return this.HttpClient.get<Curso[]>(`http://localhost:3000/courses?_expand=subject`)
+  //   .pipe(
+  //     tap((cursos) => this.cursos$.next(cursos))
+  //   );
+  // }
   obtenerCursosWithSubject(): Observable<CursoWithSubject[]> {
     return this.HttpClient.get<CursoWithSubject[]>(`http://localhost:3000/courses?_expand=subject`
     )
@@ -106,7 +105,7 @@ export class CursosService {
             return {
               ...curso,
               ...actualizacion,
-            }
+            };
           } else {
             return curso;
           }

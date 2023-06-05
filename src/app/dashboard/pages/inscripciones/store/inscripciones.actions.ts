@@ -12,6 +12,6 @@ export const InscripcionesActions = createActionGroup({
     'Delete Inscripcion Failure': props<{ error: unknown }>(),
     'Create Inscripcion': props<{ data: CreateInscripcionData}>(),
     'Create Inscripcion Success': props<{ data: InscripcionWithAll}>(),
-    'Create Inscripcion Failure': props<{ data: unknown}>(),
+    'Create Inscripcion Failure': props<{ error: unknown}>(),
   }
 });

@@ -8,3 +8,68 @@ table{
 .pointer{
     cursor: pointer;
 }
+.btn-add-div{
+    margin-top: 25px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+button.add-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    padding: 0.625rem 1.5rem 0.5rem;
+    border-radius: 6.25rem;
+    cursor: pointer;
+    background: #0032C8;
+    border: none;
+}
+
+.mat-icon.notranslate.add-btn-ic.material-icons.mat-ligature-font.mat-icon-no-color {
+    color: white;
+}
+span.add-btn-span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    font-family: "Poppins";
+    color: #fff;
+    text-shadow: none;
+}
+
+.mat-mdc-table {
+    background:#fff;
+}
+.table-id {
+    font-family: "Poppins";
+    color: #0032C8;
+    font-size: 1.1875rem;
+    font-weight: normal;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+}
+.list-id{
+    color: #0032C8;
+    font-family: 'Cormorant Infant', serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.list-data{
+    font-family: "Poppins";
+    color: #0032C8;
+    font-weight: normal;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+}
+.table-list {
+    background: #fff;
+    border: 1px solid;
+    border-color: #0032C8;
+    border-radius: 7px;
+}

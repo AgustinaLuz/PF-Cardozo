@@ -20,7 +20,8 @@ export interface Alumno {
 })
 export class AlumnosComponent {
 
-
+  role: string; 
+  
 
   dataSource = new MatTableDataSource<Alumno>();
 
@@ -50,18 +51,26 @@ export class AlumnosComponent {
     private activatedRoute: ActivatedRoute,
     private alumnosService: AlumnosService,
     ) {
+      this.role = 'admin'; 
+      this.estudiantes = [];
+
       this.alumnosService.obtenerAlumnos()
         .subscribe((alumnos) => {
+          this.estudiantes = alumnos;
           this.dataSource.data = alumnos;
         })
       
     }
   
   goToDetails(userId: number): void{
-    console.log(userId);
-    this.router.navigate([userId], {
-      relativeTo: this.activatedRoute,
-    });
+    if (userId !== undefined) {
+      console.log(userId);
+      this.router.navigate([userId.toString()], {
+        relativeTo: this.activatedRoute,
+      });
+    } else {
+      console.log("Invalid userId:", userId);
+    }
   }
 
   modificarUsuario(index: number) {

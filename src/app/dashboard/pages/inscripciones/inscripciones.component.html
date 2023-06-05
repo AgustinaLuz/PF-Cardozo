@@ -2,8 +2,11 @@
 
 <ng-template #ifNotLoading>
     <!--<pre>{{ (state$ | async)?.inscripciones | json }}</pre>-->
-
-    <button (click)="crearInscripcion()" type="button" mat-button>Create an inscription</button>
+    <div class="btn-add-div">
+    <button (click)="crearInscripcion()" class="add-btn">
+        <span class="add-btn-span">CREATE AN INSCRIPTION</span>
+    </button>
+    </div>
     <ul>
         <li *ngFor="let inscripcion of (state$ | async)?.inscripciones">
             {{ inscripcion.student.name + ' - ' + inscripcion.subject.name }}

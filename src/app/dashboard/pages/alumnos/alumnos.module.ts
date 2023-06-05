@@ -19,6 +19,7 @@ import { ObservablesModule } from '../observables/observables.module';
 import { AlumnoDetalleComponent } from './pages/alumno-detalle/alumno-detalle.component';
 import { RouterModule } from '@angular/router';
 import { AlumnosRoutingModule } from './alumnos-routing.module';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { AlumnosRoutingModule } from './alumnos-routing.module';
     MatTooltipModule,
     MatSortModule,
     ObservablesModule,
+    MatNativeDateModule,
     AlumnosRoutingModule
     // RouterModule.forChild([
     //   {

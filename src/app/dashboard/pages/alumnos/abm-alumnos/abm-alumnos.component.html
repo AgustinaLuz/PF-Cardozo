@@ -34,17 +34,19 @@
 
  <!-- CONTROL DE fecha -->
 
- <div class="col-12 field">
+
+<div class="col-6">
   <mat-form-field class="w-full">
-    <mat-label>birth date</mat-label>
-    <input
-      [formControl]="birth_dateControl"
-      type="text"
-      matInput
-    >
+    <mat-label>Birth Date</mat-label>
+    <input [formControl]="birth_dateControl" matInput [matDatepicker]="birth_datePicker">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="birth_datePicker"></mat-datepicker-toggle>
+    <mat-datepicker #birth_datePicker></mat-datepicker>
     <mat-error *ngFor="let error of birth_dateControl.errors | keyvalue">{{ error | controlErrorMessages }}</mat-error>
   </mat-form-field>
 </div>
+
+
 </form>
 </div>
 

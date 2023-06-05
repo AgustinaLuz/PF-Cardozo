@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AlumnosService } from '../../../alumnos/services/alumnos.service';
 import { CursosService } from '../../../cursos/services/cursos.service';
 import { Alumno } from '../../../alumnos/alumnos.component';
-import { Curso } from '../../models';
+import { CreateInscripcionData, Curso } from '../../models';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CursoWithSubject } from '../../../cursos/models';
+import { Subject, takeUntil } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { InscripcionesActions } from '../../store/inscripciones.actions';
+import { DialogRef } from '@angular/cdk/dialog';
 
 
 @Component({
@@ -12,24 +16,44 @@ import { CursoWithSubject } from '../../../cursos/models';
   templateUrl: './inscripcion-dialog.component.html',
   styleUrls: ['./inscripcion-dialog.component.scss']
 })
-export class InscripcionDialogComponent implements OnInit{
+export class InscripcionDialogComponent implements OnInit, OnDestroy{
 
     alumnos: Alumno[] = [];
     cursos: CursoWithSubject[] = [];
 
-    subjectIdControl = new FormControl(null, [Validators.required]);
-    studentIdControl = new FormControl(null, [Validators.required]);
-    courseIdControl = new FormControl(null, [Validators.required]);
+    selectedCourseControl = new FormControl<Curso | null>(null);
+
+    subjectIdControl = new FormControl<number | null>(null, [Validators.required]);
+    studentIdControl = new FormControl<number | null>(null, [Validators.required]);
+    courseIdControl = new FormControl<number | null>(null, [Validators.required]);
 
     inscripcionForm = new FormGroup({
       subjectId: this.subjectIdControl,
       studentId: this.studentIdControl,
       courseId: this.courseIdControl,
-    })
+    });
+
+    destroyed$ = new Subject<void>()
     
-    constructor(private alumnosService: AlumnosService, private cursosService: CursosService) {
-      this.inscripcionForm.valueChanges.subscribe(console.log);
+    constructor(private alumnosService: AlumnosService, 
+      private cursosService: CursosService,
+      private dialogRef: DialogRef<InscripcionDialogComponent>,
+      private store: Store,) {
+      this.selectedCourseControl.valueChanges.pipe(
+        takeUntil(this.destroyed$)
+      ).subscribe({
+        next: (curso) => {
+          if (curso) {
+          this.subjectIdControl.setValue(curso.subjectId);
+          this.courseIdControl.setValue(curso.id);
+          }
+        }
+      });
     }
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
+  }
 
   ngOnInit(): void {
     
@@ -46,5 +70,15 @@ export class InscripcionDialogComponent implements OnInit{
           this.cursos = res;
         }
       });
+  }
+
+  onSave(): void{
+    this.store.dispatch(
+      InscripcionesActions.createInscripcion({
+        data: this.inscripcionForm.value as CreateInscripcionData,
+      })
+    )
+
+    this.dialogRef.close();
   }
 }

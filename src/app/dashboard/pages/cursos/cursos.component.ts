@@ -27,6 +27,7 @@ export class CursosComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
+    
     this.cursosService.cursos.subscribe({
       next: (cursos) => {
         this.dataSource.data = cursos;

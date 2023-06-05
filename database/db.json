@@ -38,7 +38,6 @@
       "start_date": "2023-05-08T15:46:04.130Z",
       "end_date": "2023-05-08T15:46:04.130Z"
     }
-
   ],
   "subjects": [
     {
@@ -56,16 +55,22 @@
   ],
   "inscriptions": [
     {
-      "id": 1,
-      "subjectId": 2,
-      "studentId": 3,
-      "courseId": 1
-    },
-    {
       "id": 2,
       "subjectId": 2,
       "studentId": 1,
       "courseId": 2
+    },
+    {
+      "subjectId": 3,
+      "studentId": 1,
+      "courseId": 3,
+      "id": 5
+    },
+    {
+      "subjectId": 2,
+      "studentId": 3,
+      "courseId": 2,
+      "id": 6
     }
   ],
   "students": [

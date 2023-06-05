@@ -23,9 +23,8 @@ export class AbmAlumnosComponent implements OnInit {
 
 
   constructor(private dialogRef: MatDialogRef<AbmAlumnosComponent>, @Inject(MAT_DIALOG_DATA) public data: Alumno, private notificationService: NotificationsService) {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  
+  ngOnInit(): void {}
 
   guardar(): void {
     if (this.alumnosForm.valid) {

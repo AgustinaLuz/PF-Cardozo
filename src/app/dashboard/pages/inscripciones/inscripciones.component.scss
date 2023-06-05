@@ -1,0 +1,30 @@
+.btn-add-div{
+    margin-top: 25px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+button.add-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    padding: 0.625rem 1.5rem 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid;
+    border-color: #0032C8;
+}
+
+.mat-icon.notranslate.add-btn-ic.material-icons.mat-ligature-font.mat-icon-no-color {
+    color: white;
+}
+span.add-btn-span {
+    font-size: 1.9rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    line-height: 0.87;
+    font-family: 'Cormorant Infant', serif;
+    color: #0032C8;
+    text-shadow: none;
+}
