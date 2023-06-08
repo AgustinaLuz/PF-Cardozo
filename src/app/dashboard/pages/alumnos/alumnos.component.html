@@ -6,9 +6,9 @@
       <span class="add-btn-span">Add Student</span>
     </button>
   </div>
-<mat-form-field class="form-field-class">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilters($event)" placeholder="Ex. ium" #input>
+<mat-form-field style="background-color: #EDF7E6;">
+    <mat-label style="font-family: Poppins;">Filter</mat-label>
+    <input style="font-family: Poppins; background-color: #EDF7E6;" matInput (keyup)="applyFilters($event)" placeholder="Ex. ium" #input>
 </mat-form-field>
 
 <table mat-table [dataSource]="dataSource" class="table-list" matSort>
