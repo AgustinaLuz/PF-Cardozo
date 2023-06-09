@@ -54,6 +54,13 @@ body {
   display: flex;
   padding: 5px;
 }
+button.menu.opened {
+  border: none;
+}
+button:focus {
+  outline: 0px dotted;
+  outline: 0px auto -webkit-focus-ring-color;
+}
 .line {
   fill: none;
   stroke: #0032C8;
