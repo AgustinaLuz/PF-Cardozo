@@ -1,6 +1,7 @@
 # FF-Angular
 
 To enter as Admin you must log in as: luz@mail.com
+
 To enter as User you must log in as: pepe@mail.com
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.5.
